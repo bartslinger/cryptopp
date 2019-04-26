@@ -131,7 +131,7 @@ endif
 #   and http://www.cryptopp.com/wiki/ARM_Embedded_(Bare Metal).
 ifeq ($(IS_ARM_EMBEDDED),1)
   # CPP, CXX, AR, RANLIB, LD, etc are set in 'setenv-embedded.sh'
-  CXXFLAGS += $(ARM_EMBEDDED_FLAGS) --sysroot=$(ARM_EMBEDDED_SYSROOT)
+  CXXFLAGS += $(ARM_EMBEDDED_FLAGS) --sysroot=$(ARM_EMBEDDED_SYSROOT)/sysroot/
 endif
 
 ###########################################################
@@ -354,6 +354,7 @@ ifeq ($(IS_ARM32),1)
     NEON_FLAG =
   else
     NEON_FLAG = -march=armv7-a -mfloat-abi=$(FP_ABI) -mfpu=neon
+    $(info "NEON_FLAG set to: ${NEON_FLAG}")
   endif
 
   TPROG = TestPrograms/test_arm_neon.cxx
